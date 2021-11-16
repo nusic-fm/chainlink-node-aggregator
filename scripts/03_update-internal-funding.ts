@@ -6,7 +6,7 @@ async function main() {
   const accounts = await ethers.getSigners();
 
   const Median:Median__factory = await ethers.getContractFactory("Median");
-  const median:Median = await Median.attach("0x899C94BE103fB99C39c055940893e7F89b3d35Fc");
+  const median:Median = await Median.attach("0xd0dDf9D79bBFCdFb4dD53a4598b7146504A2B362");
 
   const Aggregator:MyAggregator__factory = await ethers.getContractFactory("MyAggregator",{
     libraries: {
@@ -14,7 +14,7 @@ async function main() {
     }
   });
   
-  const aggregator:MyAggregator = await Aggregator.attach("0xEfD0EA2567cF317a7fC25d5C6512E53de337FF35");
+  const aggregator:MyAggregator = await Aggregator.attach("0xa72332F8ae283BfdB746F4ea87b09aB6533B28aF");
   console.log("Updated Avaiable funds ",(await aggregator.availableFunds()).toString());
   console.log("Allocated funds ",(await aggregator.allocatedFunds()).toString());
 
