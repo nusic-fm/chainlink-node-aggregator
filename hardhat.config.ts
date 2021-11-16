@@ -3,8 +3,8 @@ import "@nomiclabs/hardhat-waffle";
 import '@typechain/hardhat'
 import '@nomiclabs/hardhat-ethers'
 import dotenv from 'dotenv';
-import "./tasks/set-greeting";
-import "./tasks/read-greeting";
+import 'hardhat-contract-sizer';
+import "@appliedblockchain/chainlink-plugins-fund-link";
 
 dotenv.config();
 
@@ -35,7 +35,22 @@ task("accounts", "Prints the list of accounts", async (taskArgs, hre) => {
  * @type import('hardhat/config').HardhatUserConfig
  */
 export default {
-  solidity: "0.8.4",
+  solidity: {
+    compilers: [
+      {
+        version: "0.8.0",
+      },
+      {
+        version: "0.6.6",
+      },
+    ],
+    settings: {
+      optimizer: {
+        enabled: true,
+        runs: 200,
+      },
+    },
+  },
   networks: {
     ropsten: {
       url: `https://ropsten.infura.io/v3/${INFURA_KEY}`,
@@ -44,10 +59,17 @@ export default {
     rinkeby: {
       url: `https://rinkeby.infura.io/v3/${INFURA_KEY}`,
       accounts: [`0x${RINKEBY_PRIVATE_KEY}`]
-    },
+    }
+    ,
     kovan: {
       url: `https://kovan.infura.io/v3/${INFURA_KEY}`,
       accounts: [`0x${KOVAN_PRIVATE_KEY}`]
     }
-  }
+  },
+  contractSizer: {
+    alphaSort: true,
+    disambiguatePaths: false,
+    runOnCompile: true,
+    strict: true,
+  },
 };
