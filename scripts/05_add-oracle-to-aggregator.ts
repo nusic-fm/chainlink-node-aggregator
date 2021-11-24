@@ -5,11 +5,11 @@ import { Median, Median__factory, MyAggregator, MyAggregator__factory, Oracle, O
 async function main() {
   const accounts = await ethers.getSigners();
 
-  const oracle1Address:string = "0xeB1F330336095B815986dE6D4763F7E5dae334A0";
-  const oracle2Address:string = "0x798fa5431Ed276f8EE1Ca5Cf72Af94dF11753a8D";
+  const oracle1Address:string = "0x2255fC3226395616e17544c2f72e428A5008e39f";
+  const oracle2Address:string = "0x27d07d18f91Bdd5A48f5878dd98f13f60e712c2F";
 
   const Median:Median__factory = await ethers.getContractFactory("Median");
-  const median:Median = await Median.attach("0x899C94BE103fB99C39c055940893e7F89b3d35Fc");
+  const median:Median = await Median.attach("0xd0dDf9D79bBFCdFb4dD53a4598b7146504A2B362");
 
   const Aggregator:MyAggregator__factory = await ethers.getContractFactory("MyAggregator",{
     libraries: {
@@ -17,7 +17,7 @@ async function main() {
     }
   });
   
-  const aggregator:MyAggregator = await Aggregator.attach("0xEfD0EA2567cF317a7fC25d5C6512E53de337FF35");
+  const aggregator:MyAggregator = await Aggregator.attach("0xa72332F8ae283BfdB746F4ea87b09aB6533B28aF");
   console.log("Avaiable funds ",(await aggregator.availableFunds()).toString());
   console.log("Allocated funds ",(await aggregator.allocatedFunds()).toString());
 
